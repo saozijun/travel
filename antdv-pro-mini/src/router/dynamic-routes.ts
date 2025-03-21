@@ -34,7 +34,7 @@ const adminRoutes = [
   },
   {
     path: '/system',
-    redirect: '/system/role',
+    redirect: '/system/user',
     name: 'System',
     meta: {
       title: '系统管理',
@@ -44,20 +44,51 @@ const adminRoutes = [
     component: basicRouteMap.RouteView,
     children: [
       {
-        path: '/system/role',
-        name: 'Role',
-        component: () => import('~/pages/system/role/index.vue'),
-        meta: {
-          title: '角色管理',
-          roles: []
-        },
-      },
-      {
         path: '/system/user',
         name: 'User',
         component: () => import('~/pages/system/user/index.vue'),
         meta: {
           title: '用户管理',
+          roles: ['admin']
+        },
+      },
+    ],
+  },
+  {
+    path: '/data',
+    redirect: '/data/role',
+    name: 'Data',
+    meta: {
+      title: '数据管理',
+      icon: 'SettingOutlined',
+      roles: ['admin'] // 仅管理员可见
+    },
+    component: basicRouteMap.RouteView,
+    children: [
+      {
+        path: '/data/scenic',
+        name: 'Scenic',
+        component: () => import('~/pages/data/scenic/index.vue'),
+        meta: {
+          title: '景点管理',
+          roles: ['admin']
+        },
+      },
+      {
+        path: '/data/cuisine',
+        name: 'Food',
+        component: () => import('~/pages/data/cuisine/index.vue'),
+        meta: {
+          title: '餐饮管理',
+          roles: ['admin']
+        },
+      },
+      {
+        path: '/data/route',
+        name: 'Route',
+        component: () => import('~/pages/data/route/index.vue'),
+        meta: {
+          title: '路线管理',
           roles: ['admin']
         },
       },

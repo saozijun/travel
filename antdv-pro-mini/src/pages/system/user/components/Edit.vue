@@ -6,7 +6,11 @@
     @ok="handleOk"
     :afterClose="afterClose"
   >
-    <a-form name="form" :label-col="{style:{width: '60px'}}">
+    <a-form 
+      name="form" 
+      :model="modelRef"
+      :label-col="{style:{width: '60px'}}"
+    >
       <a-form-item label="昵称" v-bind="validateInfos.nickname" >
         <a-input v-model:value="modelRef.nickname" placeholder="请输入"/>
       </a-form-item>
@@ -28,7 +32,7 @@
   </a-modal>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { Form, message } from 'ant-design-vue';
 import { save } from '~/api/user'
 import { zdList } from '~/api/role'
@@ -37,7 +41,7 @@ const visible = ref(false);
 const confirmLoading = ref(false);
 const emits = defineEmits(["saveOk"]);
 const roleList = ref([])
-const modelRef = ref({
+const modelRef = reactive({
   nickname: "",
   username: "",
   password: "",
@@ -60,18 +64,30 @@ const { resetFields, validate, validateInfos } = useForm(
   }),
 );
 const handleOk = async () => {
-  await validate();
-  confirmLoading.value = true;
-  let role = roleList.value.find(item => item.id == modelRef.value.roleId)
-  modelRef.value.role = role.name
-  await save(modelRef.value);
-  message.success('操作成功');
-  emits('saveOk');
-  visible.value = false;
-  confirmLoading.value = false;
+  try {
+    await validate();
+    confirmLoading.value = true;
+    let role = roleList.value.find(item => item.id == modelRef.roleId)
+    modelRef.role = role.name
+    await save(modelRef);
+    message.success('操作成功');
+    emits('saveOk');
+    visible.value = false;
+  } catch (e) {
+    console.error(e);
+  } finally {
+    confirmLoading.value = false;
+  }
 };
 const open = async (row) => {
-  modelRef.value = JSON.parse(JSON.stringify(row));
+  Object.assign(modelRef, {
+    nickname: "",
+    username: "",
+    password: "",
+    email: "",
+    role: "",
+    roleId: ""
+  }, row);
   roleList.value = (await zdList()).data
   visible.value = true;
 };

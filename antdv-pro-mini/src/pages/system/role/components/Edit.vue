@@ -6,7 +6,7 @@
     @ok="handleOk"
     :afterClose="afterClose"
   >
-    <a-form name="form">
+    <a-form name="form" :model="modelRef">
       <a-form-item label="名称" v-bind="validateInfos.name" >
         <a-input v-model:value="modelRef.name" placeholder="请输入"/>
       </a-form-item>

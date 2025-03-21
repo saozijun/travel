@@ -17,6 +17,6 @@ mybatis-plus:
 
 files:
   upload:
-    path: D:\项目\Feedback-tool\wms\files/
+    path: D:\travel\wms\files/
 
 ai-api-key: "sk-efffabfede29422f86ac2f9c82771a78"

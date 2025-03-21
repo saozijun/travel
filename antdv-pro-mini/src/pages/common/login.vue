@@ -131,7 +131,7 @@ const submit = async () => {
         <div class="login-right">
           <div class="login-form-wrapper">
             <div class="login-header">
-              <h4>🚔️ - 欢迎登录 - 🚔️</h4>
+              <h4>🚘 - 欢迎登录 - 🚘</h4>
               <h1>旅游线路智能推荐系统</h1>
             </div>
             <a-segmented v-model:value="loginStatus" :options="data" block />

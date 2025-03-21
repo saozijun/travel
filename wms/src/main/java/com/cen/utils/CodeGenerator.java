@@ -18,20 +18,20 @@ public class CodeGenerator {
     }
 
     private static void generate(){
-        FastAutoGenerator.create("jdbc:mysql://localhost:3306/feedback?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf-8&useSSL=false", "root", "123456")
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/travel?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf-8&useSSL=false", "root", "123456")
                 .globalConfig(builder -> {
                     builder.author("volcano") // 设置作者
                             //  .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir("D:\\项目\\Feedback-tool\\wms\\src\\main\\java\\"); // 指定输出目录
+                            .outputDir("D:\\travel\\wms\\src\\main\\java\\"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.cen") // 设置父包名
                             .moduleName(null) // 设置父包模块名
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D:\\项目\\Feedback-tool\\wms\\src\\main\\resources\\mapper\\")); // 设置mapperXml生成路径
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D:\\travel\\wms\\src\\main\\resources\\mapper\\")); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("sys_course_feedback") // 设置需要生成的表名
+                    builder.addInclude("sys_route") // 设置需要生成的表名
                             .addTablePrefix("t_", "sys_"); // 设置过滤表前缀
                 })
                 //  .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
