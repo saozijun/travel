@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-export const ROOT_ROUTE_REDIRECT_PATH = '/analysis'
+export const ROOT_ROUTE_REDIRECT_PATH = '/intelligence'
 import { useUserStore } from '~@/stores/user'
 
 const Layout = () => import('~/layouts/index.vue')
@@ -19,7 +19,17 @@ const adminRoutes = [
     meta: {
       title: '工作台',
       icon: 'FundProjectionScreenOutlined',
-      roles: ['admin', 'user']
+      roles: []
+    },
+  },
+  {
+    path: '/intelligence',
+    name: 'Intelligence', 
+    component: () => import('~/pages/intelligence/index.vue'),
+    meta: {
+      title: '旅游路线',
+      icon: 'DeploymentUnitOutlined',
+      roles: ['admin','user']
     },
   },
   {
@@ -92,6 +102,15 @@ const adminRoutes = [
           roles: ['admin']
         },
       },
+      {
+        path: '/data/feedback',
+        name: 'Feedback',
+        component: () => import('~/pages/data/feedback/index.vue'),
+        meta: {
+          title: '景区反馈管理',
+          roles: ['admin']
+        },
+      }
     ],
   }
 ]
@@ -101,13 +120,12 @@ export const rootRoute: RouteRecordRaw = {
   name: 'rootPath',
   redirect: ()=>{
     const userStore = useUserStore()
-    return ROOT_ROUTE_REDIRECT_PATH
     if (userStore.userInfo.role === 'admin') {
       return ROOT_ROUTE_REDIRECT_PATH
-    } else if (userStore.userInfo.role === 'teacher') {
-      return '/course'
+    } else if (userStore.userInfo.role === 'user') {
+      return '/intelligence'
     } else {
-      return '/studentCoures'
+      return ROOT_ROUTE_REDIRECT_PATH
     }
   },
   component: Layout,

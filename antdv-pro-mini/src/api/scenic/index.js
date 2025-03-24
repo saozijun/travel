@@ -34,3 +34,22 @@ export const del = (data) => {
 export const zdlist = (data) => {
   return useGet('/scenic/list', data)
 }
+
+/**
+ * 推荐景区
+ * @param {*} data 
+ * @returns 
+ */
+export const recommend = (data) => {
+  return useGet('/scenic/recommend', data)
+}
+
+
+/**
+ * 景区详情
+ * @param {*} data 
+ * @returns 
+ */
+export const detail = (id) => {
+  return useGet('/scenic/detail/' + id)
+}

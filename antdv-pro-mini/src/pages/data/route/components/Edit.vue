@@ -96,7 +96,7 @@
       </div>
       <div class="route-container">
         <div id="route-picker" class="route-picker"></div>
-        <div id="route-panel" class="route-panel"></div>
+        <div id="route-panel" style="height: 30%;" class="route-panel"></div>
       </div>
     </a-modal>
   </a-modal>
@@ -612,35 +612,5 @@ const getAddress = async (lnglat, type) => {
   height: 100%;
   border-radius: 4px;
   overflow: hidden;
-}
-
-.route-panel {
-  width: 280px;
-  height: 100%;
-  overflow-y: auto;
-  border: 1px solid #e8e8e8;
-  border-radius: 4px;
-  background: #fff;
-  
-  :deep(.amap-lib-driving),
-  :deep(.amap-lib-walking) {
-    padding: 10px;
-    
-    .amap-lib-driving-title {
-      background-color: #f5f5f5;
-      padding: 8px;
-      margin-bottom: 10px;
-      border-radius: 4px;
-    }
-    
-    .amap-lib-driving-step {
-      padding: 8px;
-      border-bottom: 1px solid #f0f0f0;
-      
-      &:last-child {
-        border-bottom: none;
-      }
-    }
-  }
 }
 </style>

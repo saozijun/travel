@@ -53,6 +53,19 @@ public class ScenicController {
     public Result findOne(@PathVariable Scenic scenic) {
         return Result.success(scenicService.getById(scenic.getId()));
     }
+    //获取推荐景区(评分前5)
+    @GetMapping("/recommend")
+    public Result getRecommendScenic() {
+        QueryWrapper<Scenic> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("rate"); //按评分降序排序
+        queryWrapper.last("LIMIT 5"); //限制返回5条记录
+        return Result.success(scenicService.list(queryWrapper));
+    }
+    //获取景区详细信息(包含路线和餐饮信息)
+    @GetMapping("/detail/{id}")
+    public Result getScenicDetail(@PathVariable Integer id) {
+        return Result.success(scenicService.getScenicDetailById(id));
+    }
     //分页查询
     @GetMapping("/page")
     public Result findPage(@RequestParam(defaultValue = "1") Integer pageNum,

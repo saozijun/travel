@@ -110,10 +110,7 @@ const getList = async () => {
     total.value = data.total
     data.records.map((item,i) => {item.index = i + 1})
     tableData.value = data.records
-  } catch (error) {
-    console.error('获取列表失败:', error)
-    message.error('获取列表失败')
-  } finally {
+  } catch (error) {} finally {
     loading.value = false
   }
 }
@@ -123,10 +120,7 @@ const onDelete = async (id) => {
     await del({id})
     message.success('删除成功')
     getList()
-  } catch (error) {
-    console.error('删除失败:', error)
-    message.error('删除失败')
-  }
+  } catch (error) {}
 }
 
 const open = (record = {}) => {

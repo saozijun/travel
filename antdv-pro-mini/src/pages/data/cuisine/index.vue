@@ -4,8 +4,8 @@
       <a-form :model="formModel">
         <a-row :gutter="[15, 0]">
           <a-col>
-            <a-form-item name="name" label="餐厅名称">
-              <a-input v-model:value="formModel.name" placeholder="请输入餐厅名称" />
+            <a-form-item name="name" label="美食名称">
+              <a-input v-model:value="formModel.name" placeholder="请输入美食名称" />
             </a-form-item>
           </a-col>
           <a-col>
@@ -106,10 +106,7 @@ const getList = async () => {
     total.value = data.total
     data.records.map((item,i) => {item.index = i + 1})
     tableData.value = data.records
-  } catch (error) {
-    console.error('获取列表失败:', error)
-    message.error('获取列表失败')
-  } finally {
+  } catch (error) {} finally {
     loading.value = false
   }
 }
@@ -119,10 +116,7 @@ const onDelete = async (id) => {
     await del({id})
     message.success('删除成功')
     getList()
-  } catch (error) {
-    console.error('删除失败:', error)
-    message.error('删除失败')
-  }
+  } catch (error) {}
 }
 
 const getscenicName = (id) => {
@@ -141,12 +135,12 @@ const columns = [
     width: 80,
   },
   {
-    title: '餐厅名称',
+    title: '美食名称',
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: '餐厅图片',
+    title: '美食图片',
     dataIndex: 'imageUrl',
     key: 'imageUrl',
   },

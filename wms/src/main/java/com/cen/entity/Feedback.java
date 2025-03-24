@@ -7,47 +7,43 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
+ * 景区反馈表
  * </p>
  *
  * @author volcano
- * @since 2025-03-20
+ * @since 2025-03-24
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("sys_scenic")
-public class Scenic implements Serializable {
+@TableName("sys_feedback")
+public class Feedback implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    // 反馈ID
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private String name;
+    // 用户ID
+    private Long userId;
 
-    private String address;
+    // 景区ID
+    private Integer scenicId;
 
-    private String openingHours;
+    // 反馈内容
+    private String content;
 
-    private String rate;
+    // 评分（1-5分）
+    private Integer rate;
 
-    private BigDecimal ticketPrice;
-
-    private String description;
-
-    private String contactPhone;
-
+    // 创建时间
     private LocalDateTime createdAt;
 
+    // 更新时间
     private LocalDateTime updatedAt;
-
-    private String imageUrl;
-
-    private String locations;
 }

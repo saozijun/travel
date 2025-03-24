@@ -48,6 +48,7 @@ declare module '@vue/runtime-core' {
     ARadioButton: typeof import('ant-design-vue/es')['RadioButton']
     ARadioGroup: typeof import('ant-design-vue/es')['RadioGroup']
     ARangePicker: typeof import('ant-design-vue/es')['RangePicker']
+    ARate: typeof import('ant-design-vue/es')['Rate']
     ARow: typeof import('ant-design-vue/es')['Row']
     ASegmented: typeof import('ant-design-vue/es')['Segmented']
     ASelect: typeof import('ant-design-vue/es')['Select']

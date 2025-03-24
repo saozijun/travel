@@ -8,7 +8,7 @@
     :afterClose="afterClose"
   >
     <a-form name="form" :model="modelRef" :label-col="{style:{width: '80px'}}">
-      <a-form-item label="餐厅名称" v-bind="validateInfos.name">
+      <a-form-item label="美食名称" v-bind="validateInfos.name">
         <a-input v-model:value="modelRef.name" placeholder="请输入"/>
       </a-form-item>
 
@@ -24,7 +24,7 @@
         />
       </a-form-item>
 
-      <a-form-item label="餐厅图片" v-bind="validateInfos.imageUrl">
+      <a-form-item label="美食图片" v-bind="validateInfos.imageUrl">
         <div class="image-uploader">
           <div class="preview-image" v-if="modelRef.imageUrl">
             <a-image :src="modelRef.imageUrl" :width="120" :height="120" />
@@ -63,10 +63,10 @@
         />
       </a-form-item>
 
-      <a-form-item label="餐厅描述" v-bind="validateInfos.description">
+      <a-form-item label="美食描述" v-bind="validateInfos.description">
         <a-textarea 
           v-model:value="modelRef.description" 
-          placeholder="请输入餐厅特色、主营菜品等描述信息"
+          placeholder="请输入美食特色、主营菜品等描述信息"
           :rows="4"
         />
       </a-form-item>
@@ -105,11 +105,11 @@ const afterClose = () => {
 const { resetFields, validate, validateInfos } = useForm(
   modelRef,
   reactive({
-    name: [{ required: true, message: '请输入餐厅名称'}],
+    name: [{ required: true, message: '请输入美食名称'}],
     price: [{ required: true, message: '请输入人均消费'}],
-    description: [{ required: true, message: '请输入餐厅描述'}],
+    description: [{ required: true, message: '请输入美食描述'}],
     scenicId: [{ required: true, message: '请选择所属景区'}],
-    imageUrl: [{ required: true, message: '请上传餐厅图片'}]
+    imageUrl: [{ required: true, message: '请上传美食图片'}]
   }),
 );
 

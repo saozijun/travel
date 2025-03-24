@@ -18,6 +18,9 @@
       <a-form-item label="门票价格" v-bind="validateInfos.ticketPrice">
         <a-input-number v-model:value="modelRef.ticketPrice" prefix="￥" style="width: 100%" />
       </a-form-item>
+      <a-form-item label="景区评分" v-bind="validateInfos.rate">
+        <a-rate v-model:value="modelRef.rate" />
+      </a-form-item>
       <a-form-item label="联系电话" v-bind="validateInfos.contactPhone">
         <a-input v-model:value="modelRef.contactPhone" style="width: 100%" placeholder="请输入" />
       </a-form-item>
@@ -123,7 +126,8 @@ const modelRef = reactive({
   contactPhone: null,
   address: "",
   locations: null,
-  imageUrl: ""
+  imageUrl: "",
+  rate: 0
 });
 
 // 地图相关变量
@@ -156,13 +160,12 @@ const rulesRef = reactive({
   ticketPrice: [{ required: true, message: '请输入门票价格'}],
   imageUrl: [{ required: true, message: '请上传景区图片'}],
   openingHours: [{ required: true, message: '请选择开放时间'}],
-  contactPhone: [{ required: true, message: '请输入联系电话'}]
+  contactPhone: [{ required: true, message: '请输入联系电话'}],
+  rate: [{ required: true, message: '请选择景区评分'}],
 });
 
 // 修改 useForm 的使用方式
-const { resetFields, validate, validateInfos } = useForm(modelRef, rulesRef, {
-  onValidate: (...args) => console.log('验证结果:', ...args),
-});
+const { resetFields, validate, validateInfos } = useForm(modelRef, rulesRef);
 
 // 初始化地图选点
 const initMapPicker = async () => {
@@ -262,10 +265,7 @@ const searchLocation = async () => {
       message.error(`搜索位置失败: ${result.info || '未知错误'}`);
       searchResults.value = [];
     }
-  } catch (error) {
-    console.error('位置搜索异常:', error);
-    message.error(`位置搜索异常: ${error.message}`);
-  }
+  } catch (error) {}
 };
 
 // 选择搜索结果
@@ -329,6 +329,7 @@ const handleOk = async () => {
     await save(tempData);
     message.success('操作成功');
     emits('saveOk');
+    confirmLoading.value = false;
     visible.value = false;
   } catch (error) {
     confirmLoading.value = false;
@@ -345,7 +346,8 @@ const open = (row) => {
     contactPhone: null,
     address: "",
     locations: null,
-    imageUrl: ""
+    imageUrl: "",
+    rate: 0
   }, row);
   
   if (modelRef.openingHours) {
