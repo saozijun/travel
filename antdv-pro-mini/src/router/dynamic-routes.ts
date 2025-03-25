@@ -33,6 +33,26 @@ const adminRoutes = [
     },
   },
   {
+    path: '/userfeedback',
+    name: 'Userfeedback', 
+    component: () => import('~/pages/userfeedback/index.vue'),
+    meta: {
+      title: '我的反馈',
+      icon: 'CommentOutlined',
+      roles: ['user']
+    },
+  },
+  {
+    path: '/ai',
+    name: 'Ai', 
+    component: () => import('~/pages/ai/index.vue'),
+    meta: {
+      title: 'AI旅游助手',
+      icon: 'RedditOutlined',
+      roles: ['user']
+    },
+  },
+  {
     path: '/settings',
     name: 'Settings',
     component: () => import('~/pages/system/settings/index.vue'),

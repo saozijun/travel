@@ -36,7 +36,7 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
     private IScenicService scenicService;
     
     @Override
-    public Map<String, Object> pageWithInfo(Integer pageNum, Integer pageSize, Integer scenicId) {
+    public Map<String, Object> pageWithInfo(Integer pageNum, Integer pageSize, Integer scenicId, Integer userId) {
         Map<String, Object> result = new HashMap<>();
         
         // 获取反馈分页数据
@@ -44,6 +44,9 @@ public class FeedbackServiceImpl extends ServiceImpl<FeedbackMapper, Feedback> i
         queryWrapper.orderByDesc("id");
         if (scenicId != null) {
             queryWrapper.eq("scenic_id", scenicId);
+        }
+        if (userId != null) {
+            queryWrapper.eq("user_id", userId);
         }
         Page<Feedback> page = page(new Page<>(pageNum, pageSize), queryWrapper);
         

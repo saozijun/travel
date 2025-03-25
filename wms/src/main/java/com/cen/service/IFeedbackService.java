@@ -14,5 +14,5 @@ import java.util.Map;
  */
 public interface IFeedbackService extends IService<Feedback> {
     // 获取带详细信息的反馈分页列表
-    Map<String, Object> pageWithInfo(Integer pageNum, Integer pageSize, Integer scenicId);
+    Map<String, Object> pageWithInfo(Integer pageNum, Integer pageSize, Integer scenicId, Integer userId);
 }

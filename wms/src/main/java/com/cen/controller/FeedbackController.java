@@ -65,8 +65,9 @@ public class FeedbackController {
     @GetMapping("/pageWithInfo")
     public Result pageWithInfo(@RequestParam(defaultValue = "1") Integer pageNum,
                                @RequestParam(defaultValue = "10") Integer pageSize,
-                               @RequestParam(required = false) Integer scenicId) {
-        return Result.success(feedbackService.pageWithInfo(pageNum, pageSize, scenicId));
+                               @RequestParam(required = false) Integer scenicId,
+                               @RequestParam(required = false) Integer userId) {
+        return Result.success(feedbackService.pageWithInfo(pageNum, pageSize, scenicId, userId));
     }
 }
 
